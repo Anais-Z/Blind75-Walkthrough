@@ -15,3 +15,19 @@ class Solution(object):
             ptr2 += 1
         
         return False
+
+
+class Solution(object):
+    def containsDuplicate(self, nums):
+        
+        hashMap = {}
+
+        for i in range(len(nums)):
+
+            if(nums[i] in hashMap):
+                return True
+            else:
+                hashMap[i] = nums[i]
+        
+        return False
+        
