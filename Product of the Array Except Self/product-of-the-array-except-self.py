@@ -1,23 +1,28 @@
 class Solution(object):
     def productExceptSelf(self, nums):
-         
-        length = len(nums)
-        newArray = [1] * length
-
-        preFix = 1
-        postFix = 1
-
-        # Calculate the prefix products and store them in newArray
-        for i in range(length):
-            newArray[i] = preFix
-            preFix *= nums[i]
         
-        # Calculate the postfix products and multiply them into newArray
-        for i in range(length - 1, -1, -1):
-            newArray[i] *= postFix
-            postFix *= nums[i]
+        left = []
+        right = []
+ 
 
-        return newArray
+        for i in range(0, len(nums)):
+
+            if i == 0:
+                left.append(1)
+            else:
+                left.append(left[i - 1] * nums[i - 1])
+
+        right = [1] * len(nums)
+
+        for i in range(len(nums) - 2, -1, -1):
+            right[i] = nums[i + 1] * right[1 + i]
+
+        newArr = []
+        for i in range(0, len(nums)):
+            newArr.append(left[i] * right[i])
+
+     
+        return newArr
 
 
 
